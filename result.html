@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Result</title>
-    <style>
-        body {
-            background: linear-gradient(to right, #11998e, #38ef7d);
-            text-align: center;
-            color: white;
-        }
-        .box {
-            margin-top: 150px;
-            padding: 40px;
-            background: rgba(0,0,0,0.3);
-            display: inline-block;
-            border-radius: 15px;
-        }
-    </style>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<div class="box">
-    <h1>Prediction Result</h1>
-    <h2>Class: {{ prediction }}</h2>
-    <a href="/" style="color:white;">Go Back</a>
-</div>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <p><strong>Node ID:</strong> {{ node_id }}</p>
+        <p><strong>Predicted Class:</strong> {{ predicted_class }}</p>
+        <p><strong>Actual Class:</strong> {{ actual_class }}</p>
+
+        <h2>Connected Neighbor Nodes</h2>
+        <ul>
+            {% for n in neighbors %}
+                <li>Node {{ n.id }} → {{ n.class }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Reason</h2>
+        <p>{{ reason }}</p>
+
+        <a href="/">Try Another Node</a>
+    </div>
 </body>
 </html>
